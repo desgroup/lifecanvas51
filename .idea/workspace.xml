@@ -289,7 +289,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434745655180</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working site syncd to 5.0 version">
+      <created>1434849767285</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1434849767285</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -336,7 +342,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Auth and UI Working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Auth and UI Working" />
+    <MESSAGE value="Working site syncd to 5.0 version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working site syncd to 5.0 version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

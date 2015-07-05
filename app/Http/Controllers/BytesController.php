@@ -3,7 +3,6 @@
 use App\Byte;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-//use Illuminate\Http\Request; removed this for the use of Request Facade below
 use App\Http\Requests\ByteRequest;
 use App\Lifecanvas\FuzzyDate;
 use Auth;
@@ -26,7 +25,7 @@ class BytesController extends Controller {
         $title = 'Lifebyte List';
         $description = 'Lifecanvas, take a byte our of life';
 
-        $bytes = Byte::latest('byte_date')->get();
+        $bytes = \Auth::user()->bytes()->latest('byte_date')->past()->with('place')->get();
         $count = $bytes->count();
 
         return view('bytes.index', compact('bytes','title','description','count'));
@@ -42,7 +41,17 @@ class BytesController extends Controller {
 
         $title = 'Add a Lifebyte';
 
-		return view('bytes.create', compact('title'));
+        $date = Carbon::now('America/Toronto');
+
+        $placeList = array('0' => 'Select a place for the byte');
+
+        $places = \App\Place::orderBy('name')->lists('name', 'id')->toArray();
+
+        $placeList = $placeList + $places;
+
+        $zones = \App\Zone::orderBy('zone_name')->lists('zone_name', 'id')->toArray();
+
+        return view('bytes.create', compact('title', 'placeList', 'zones', 'date'));
 	}
 
 	/**
@@ -64,15 +73,23 @@ class BytesController extends Controller {
             $request->seconds
         );
 
-        //$user_id = Auth::user()->id;
+        $timeZone = \App\Zone::where('id', '=', $request->zone_id)->first();
+
+        $timestamp = Carbon::createFromFormat('Y-m-d H:i:s',
+                    $byte_date["datetime"], $timeZone->zone_name);
+
+        //dd($timestamp);
 
         $input = array_add($request->all(), 'user_id', Auth::id());
 
-        $input = array_add($input, 'byte_date', $byte_date["datetime"]);
+        $input["image_id"] = $input["image_id"] == "" ? null : $input["image_id"];
+        $input["rating"] = $input["rating"] == "" ? null : $input["rating"];
+        $input["place_id"] = $input["place_id"] == 0 ? null : $input["place_id"];
+        $input["story"] = strlen($input["story"]) < 1 ? null : $input["story"];
+
+        $input = array_add($input, 'byte_date', $timestamp->setTimezone('UTC'));
 
         $input = array_add($input, 'accuracy', $byte_date["accuracy"]);
-
-        //dd($input);
 
         Byte::create($input);
 
@@ -103,13 +120,29 @@ class BytesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$byte = Byte::findOrFail($id);
 
-        //dd($byte);
+        $byte = Byte::findOrFail($id);
 
         $title = "Edit: $byte->name";
 
-        return view('bytes.edit', compact('byte','title'));
+        $fuzzy_date = new FuzzyDate();
+
+        $timeZone = \App\Zone::where('id', '=', $byte->zone_id)->first();
+
+        $timestamp = Carbon::createFromFormat('Y-m-d H:i:s',
+            $byte->byte_date, 'UTC');
+
+        $formDate = $fuzzy_date->makeFormValues($timestamp->setTimezone($timeZone->zone_name), $byte->accuracy);
+
+        $placeList = array('0' => 'Select a place for the byte');
+
+        $places = \App\Place::orderBy('name')->lists('name', 'id')->toArray();
+
+        $placeList = $placeList + $places;
+
+        $zones = \App\Zone::orderBy('zone_name')->lists('zone_name', 'id')->toArray();
+
+        return view('bytes.edit', compact('byte','title', 'formDate', 'zones', 'placeList'));
 	}
 
 	/**
@@ -122,9 +155,38 @@ class BytesController extends Controller {
 	{
         $byte = Byte::findOrFail($id);
 
-        $byte->update($request->all());
+        $input = array_add($request->all(), 'user_id', Auth::id());
 
-        $title = "$byte->name";
+        $title = $input["name"];
+
+        $fuzzy_date = new FuzzyDate();
+
+        $byte_date = $fuzzy_date->makeByteDate(
+            $request->year,
+            $request->month,
+            $request->day,
+            $request->hour,
+            $request->minute,
+            $request->seconds
+        );
+
+        $input["image_id"] = $input["image_id"] == "" ? null : $input["image_id"];
+        $input["rating"] = $input["rating"] == "" ? null : $input["rating"];
+        $input["place_id"] = $input["place_id"] == 0 ? null : $input["place_id"];
+        $input["story"] = strlen($input["story"]) < 1 ? null : $input["story"];
+
+        $timeZone = \App\Zone::where('id', '=', $request->zone_id)->first();
+
+        $timestamp = Carbon::createFromFormat('Y-m-d H:i:s',
+            $byte_date["datetime"], $timeZone->zone_name);
+
+        $input = array_add($input, 'byte_date', $timestamp->setTimezone('UTC'));
+
+        $input = array_add($input, 'accuracy', $byte_date["accuracy"]);
+
+        //dd($input);
+
+        $byte->update($input);
 
         return view('bytes.show', compact('byte','title'));
 	}

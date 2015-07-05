@@ -28,7 +28,11 @@
         </div>
         <div class="col-md-4">
             {!! Form::label('place_id', 'Place:') !!}
-            {!! Form::text('place_id', null, ['class' => 'form-control']) !!}
+            @if($placeList)
+                {!! Form::select('place_id', $placeList, null, ['class' => 'form-control']) !!}
+            @else
+                {!! Form::text('place_id', null, ['class' => 'form-control']) !!}
+            @endif
         </div>
     </div>
 
@@ -66,15 +70,15 @@
     <div class="row form-group">
         <div class="col-md-2">
             {!! Form::label('year', 'Year:') !!}
-            {!! Form::text('year', date('Y'), ['class' => 'form-control']) !!}
+            {!! Form::text('year', $date->format('Y'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-2">
-            {!! Form::label('month', 'Month/Season:') !!}
-            {!! Form::text('month', date('n'), ['class' => 'form-control']) !!}
+            {!! Form::label('month', 'Month:') !!}
+            {!! Form::text('month', $date->format('n'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-2">
             {!! Form::label('day', 'Day:') !!}
-            {!! Form::text('day', date('j'), ['class' => 'form-control']) !!}
+            {!! Form::text('day', $date->format('j'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-2">
             {!! Form::label('hour', 'Hour:') !!}
@@ -90,9 +94,21 @@
         </div>
     </div>
 
+    <div class="row form-group">
+       <div class="col-md-4">
+            {!! Form::label('zone_id', 'Time Zone:') !!}
+            @if($zones)
+                {!! Form::select('zone_id', $zones, 90, ['class' => 'form-control']) !!}
+            @else
+                {!! Form::text('zone_id', null, ['class' => 'form-control']) !!}
+            @endif
+        </div>
+    </div>
+
     <!-- Create Lifebyte Submit Button -->
     <div class='form-group'>
-        {!! Form::submit('Create Lifebyte', ['class' => 'btn btn-u']) !!}
+        {!! Form::submit('Create Lifebyte', ['class' => 'btn-u']) !!}
+        {!! link_to(URL::previous(), 'Cancel', ['class' => 'btn-u btn-u-default']) !!}
     </div>
 
     {!! Form::close() !!}

@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Byte extends Model {
@@ -12,25 +13,45 @@ class Byte extends Model {
         'type',
         'privacy',
         'time_perspective',
-        'year',
-        'month',
-        'day',
-        'hour',
-        'minute',
-        'second',
         'byte_date',
         'accuracy',
+        'zone_id',
         'image_id',
         'place_id',
         'lifeline_id',
         'user_id'
     ];
 
+    /*
+     * Turns a timestamp into a Carbon instance
+     */
     protected $dates = ['byte_date'];
 
-    public function user(){
+    /*
+     * Scopes
+     */
+    public function scopePast($query) {
 
-        return $this->belongsTo('\App\User');
+        $query->where('byte_date', '<=', Carbon::now('UTC'));
+
+    }
+
+    /*
+     * Relationships
+     */
+    public function user() {
+
+        return $this->belongsTo('App\User');
+    }
+
+    public function place() {
+
+        return $this->belongsTo('App\Place');
+    }
+
+    public function zone() {
+
+        return $this->belongsTo('App\Zone');
     }
 
 }

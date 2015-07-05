@@ -22,6 +22,11 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers;
 
+    /*
+     * Page the application goes to when you log in successfully
+     */
+    protected $redirectTo = '/bytes';
+
     /**
      * Create a new authentication controller instance.
      *

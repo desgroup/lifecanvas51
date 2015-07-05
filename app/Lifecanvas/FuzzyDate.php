@@ -4,37 +4,29 @@ namespace app\Lifecanvas;
 
 class FuzzyDate {
 
-//    public $year;
-//    public $month;
-//    public $day;
-//    public $hour;
-//    public $minute;
-//    public $seconds;
-//    public $accuracy;
-
     private $values = array();
     private $datetime;
     private $accuracy;
 
-    public function getFormValues($currentDate, $accuracy) {
+    public function makeFormValues($currentDate, $accuracy) {
 
         // Check year
-        $this->values[] = (substr( $accuracy, 2, 1 ) == 1 ? date('Y', strtotime($currentDate)) : "");
+        $this->values["year"] = (substr( $accuracy, 0, 1 ) == 1 ? date('Y', strtotime($currentDate)) : "");
 
         // Check month
-        $this->values[] = (substr( $accuracy, 3, 1 ) == 1 ? date('n', strtotime($currentDate)) : "");
+        $this->values["month"] = (substr( $accuracy, 1, 1 ) == 1 ? date('n', strtotime($currentDate)) : "");
 
         // Check day
-        $this->values[] = (substr( $accuracy, 4, 1 ) == 1 ? date('j', strtotime($currentDate)) : "");
+        $this->values["day"] = (substr( $accuracy, 2, 1 ) == 1 ? date('j', strtotime($currentDate)) : "");
 
         // Check hour
-        $this->values[] = (substr( $accuracy, 5, 1 ) == 1 ? date('G', strtotime($currentDate)) : "");
+        $this->values["hour"] = (substr( $accuracy, 3, 1 ) == 1 ? date('G', strtotime($currentDate)) : "");
 
         // Check minute
-        $this->values[] = (substr( $accuracy, 6, 1 ) == 1 ? date('i', strtotime($currentDate)) : "");
+        $this->values["minute"] = (substr( $accuracy, 4, 1 ) == 1 ? date('i', strtotime($currentDate)) : "");
 
         // Check seconds
-        $this->values[] = (substr( $accuracy, 7, 1 ) == 1 ? date('s', strtotime($currentDate)) : "");
+        $this->values["second"] = (substr( $accuracy, 5, 1 ) == 1 ? date('s', strtotime($currentDate)) : "");
 
         return $this->values;
 
@@ -46,12 +38,12 @@ class FuzzyDate {
         if($year != "") {
 
             $this->datetime = $year;
-            $this->accuracy = "001";
+            $this->accuracy = "1";
 
         } else {
 
             $this->datetime = "0000";
-            $this->accuracy = "000";
+            $this->accuracy = "0";
 
         }
 

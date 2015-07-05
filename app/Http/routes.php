@@ -25,17 +25,4 @@ $router->group(['middleware' => 'auth'], function() {
 
     Route::resource('bytes', 'BytesController');
 
-    Route::get('/date', function () {
-
-        //$fuzzyDate = new \App\Lifecanvas\FuzzyDate(2014, 2, 10, '','','','00111111110');
-
-        $fuzzyDate = new \App\Lifecanvas\FuzzyDate;
-
-        //$byte = \App\Byte::findOrFail(1);
-
-        //return $fuzzyDate->getFormValues($byte->byte_time,$byte->accuracy);
-
-        return $fuzzyDate->makeByteTime(2010, 2, 10, 1, 22, '');
-
-    });
 });

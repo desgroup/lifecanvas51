@@ -29,6 +29,7 @@ class CreateBytesTable extends Migration
             $table->tinyInteger('second')->nullable();
             $table->dateTime('byte_date')->nullable();
             $table->string('accuracy')->nullable();
+            $table->integer('zone_id')->nullable()->unsigned();
             $table->integer('image_id')->nullable()->unsigned();
             $table->integer('place_id')->nullable()->unsigned();
             $table->integer('lifeline_id')->nullable()->unsigned();

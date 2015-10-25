@@ -10,7 +10,9 @@
 
 <div class="wrapper">
 
-    @include('layouts.partials.header')
+    @if(!isset($hidenav))
+        @include('layouts.partials.header')
+    @endif
 
     @if(Auth::check())
 

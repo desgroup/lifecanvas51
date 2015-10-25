@@ -2,10 +2,15 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Byte extends Model {
 
-	protected $fillable = [
+    use PresentableTrait;
+
+    protected $presenter = 'App\Lifecanvas\Presenters\BytePresenter';
+
+    protected $fillable = [
 
         'name',
         'story',
@@ -42,6 +47,45 @@ class Byte extends Model {
     public function user() {
 
         return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Get the people associated with the byte
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function people() {
+
+        return $this->belongsToMany('App\People')->withTimestamps();
+
+    }
+
+    public function getPeopleListAttribute() {
+
+        return $this->people()->lists('id')->toArray();
+
+    }
+
+    /**
+     * Get the lines associated with the byte
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function lines() {
+
+        return $this->belongsToMany('App\Line')->withTimestamps();
+
+    }
+
+    public function getLineListAttribute() {
+
+        return $this->lines()->lists('id')->toArray();
+
+    }
+
+    public function image() {
+
+        return $this->belongsTo('App\Image');
     }
 
     public function place() {

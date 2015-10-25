@@ -3,7 +3,7 @@
 @section('content')
 
     @include('layouts.partials.error_list')
-    {!! Form::open(['method' => 'PATCH', 'action' => ['BytesController@update', $byte->id]]) !!}
+    {!! Form::open(['method' => 'PATCH', 'action' => ['BytesController@update', $byte->id], 'files' => 'true']) !!}
 
     <!-- Name Input -->
     <div class='form-group'>
@@ -16,15 +16,33 @@
         {!! Form::label('story', 'Story:') !!}
         {!! Form::textarea('story', $byte["story"], ['class' => 'form-control']) !!}
     </div>
+    <div class="row form-group">
+        <div class="col-md-4">
+            {!! Form::label('image_id', 'Current Image ID:') !!}
+            {!! Form::text('image_id', $byte["image_id"], ['class' => 'form-control']) !!}
+        </div>
+        <!-- Image File -->
+        <div class="col-md-4">
+            {!! Form::label('image', 'Image:') !!}
+            {!! Form::file('image', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-md-4">
+            {!! Form::label('use_image_time', 'Use Image Timestamp:') !!}<br>
+            {!! Form::checkbox('use_image_time', null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
 
     <div class="row form-group">
         <div class="col-md-4">
             {!! Form::label('rating', 'Rating:') !!}
-            {!! Form::text('rating', $byte["rating"], ['class' => 'form-control']) !!}
-        </div>
-        <div class="col-md-4">
-            {!! Form::label('image_id', 'Image:') !!}
-            {!! Form::text('image_id', $byte["image_id"], ['class' => 'form-control']) !!}
+            {!! Form::select('rating', array(
+                0 => 'Unrated',
+                1 => 'Hated it',
+                2 => 'Didn&lsquo;t like it',
+                3 => 'Liked it',
+                4 => 'Really liked it',
+                5 => 'Loved it'), $byte["rating"], ['class' => 'form-control'])
+            !!}
         </div>
         <div class="col-md-4">
             {!! Form::label('place_id', 'Place:') !!}
@@ -33,6 +51,10 @@
             @else
                 {!! Form::text('place_id', null, ['class' => 'form-control']) !!}
             @endif
+        </div>
+        <div class="col-md-4">
+            {!! Form::label('zone_id', 'Time Zone:') !!}
+            {!! Form::select('zone_id', $zones, $byte["zone_id"], ['class' => 'form-control']) !!}
         </div>
    </div>
 
@@ -95,9 +117,13 @@
     </div>
 
     <div class="row form-group">
-        <div class="col-md-4">
-            {!! Form::label('zone_id', 'Time Zone:') !!}
-            {!! Form::select('zone_id', $zones, $byte["zone_id"], ['class' => 'form-control']) !!}
+        <div class="col-md-6">
+            {!! Form::label('lines', 'Lifelines:') !!}
+            {!! Form::select('lines[]', $lines, $byte->line_list, ['class' => 'form-control', 'multiple']) !!}
+        </div>
+        <div class="col-md-6">
+            {!! Form::label('people', 'People:') !!}
+            {!! Form::select('people[]', $people, $byte->people_list, ['class' => 'form-control', 'multiple']) !!}
         </div>
     </div>
 

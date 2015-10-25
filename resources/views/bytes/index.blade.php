@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Lifebyte List - Lifecanvas')
+
 @section('headcontent', '<link rel="stylesheet" href="assets/css/pages/page_search_inner.css">')
 
 @section('content')

@@ -9,7 +9,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="fa fa-bars"></span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/home">
                     <img id="logo-header" src="/lifecanvas/img/logo.png" alt="Logo">
                 </a>
             </div>

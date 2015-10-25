@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Lifecanvas;
+namespace App\Lifecanvas;
 
 class FuzzyDate {
 
@@ -50,12 +50,12 @@ class FuzzyDate {
         // Set month
         if($month != "") {
 
-            $this->datetime .= "-" . (strlen($month) == 1 ? "0" . $month : $month);
+            $this->datetime .= ":" . (strlen($month) == 1 ? "0" . $month : $month);
             $this->accuracy .= "1";
 
         } else {
 
-            $this->datetime .= "-01";
+            $this->datetime .= ":01";
             $this->accuracy .= "0";
 
         }
@@ -63,12 +63,12 @@ class FuzzyDate {
         // Set day
         if($day != "") {
 
-            $this->datetime .= "-" . (strlen($day) == 1 ? "0" . $day : $day);
+            $this->datetime .= ":" . (strlen($day) == 1 ? "0" . $day : $day);
             $this->accuracy .= "1";
 
         } else {
 
-            $this->datetime .= "-01";
+            $this->datetime .= ":01";
             $this->accuracy .= "0";
 
         }

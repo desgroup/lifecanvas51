@@ -13,6 +13,7 @@
 <!-- JS Page Level -->
 <script src="assets/js/app.js"></script>
 @yield('pagejs')
+
 <script>
     jQuery(document).ready(function() {
         App.init();

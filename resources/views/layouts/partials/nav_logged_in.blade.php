@@ -3,10 +3,6 @@
     <div class="container">
         <ul class="nav navbar-nav">
 
-            <!-- Home Page Link -->
-            <li><a href="/home">Home</a> </li>
-            <!-- End Home -->
-
             <!-- Bytes -->
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -17,28 +13,67 @@
                     <li><a href="/bytes/create">Add</a></li>
                 </ul>
             </li>
-            <!-- End Options -->
+            <!-- End Bytes -->
 
-            <!-- Options -->
+            <!-- Lines -->
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    Options
+                    Lines
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="/bytes">Bytes</a></li>
-
-                    <!-- One Page -->
-                    <li class="dropdown-submenu">
-                        <a href="javascript:void(0);">Option 2: One Page</a>
-                        <ul class="dropdown-menu">
-                            <li><a target="_blank" href="One-Page/index.html">- One Page Template</a></li>
-                            <li><a target="_blank" href="One-Page/dark-page-example.html">- One Page Dark Theme</a></li>
-                        </ul>
-                    </li>
-                    <!-- End One Page -->
-               </ul>
+                    <li><a href="/lines">List All</a></li>
+                    <li><a href="/lines/create">Add</a></li>
+                </ul>
             </li>
-            <!-- End Options -->
+            <!-- End Lines -->
+
+            <!-- People -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    People
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/people">List All</a></li>
+                    <li><a href="/people/create">Add</a></li>
+                </ul>
+            </li>
+            <!-- End People -->
+
+            <!-- Places -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Places
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/places">List All</a></li>
+                    <li><a href="/places/create">Add</a></li>
+                </ul>
+            </li>
+            <!-- End Places -->
+
+            <!-- Things -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Things
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/places">List All</a></li>
+                    <li><a href="/places/create">Add</a></li>
+                </ul>
+            </li>
+            <!-- End Things -->
+
+            <!-- Events -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Events
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/places">List All</a></li>
+                    <li><a href="/places/create">Add</a></li>
+                </ul>
+            </li>
+            <!-- End Events -->
 
             <!-- Account -->
             <li class="dropdown">

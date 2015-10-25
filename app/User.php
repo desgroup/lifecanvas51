@@ -34,6 +34,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token'];
 
     /**
+     * Relationships
+     */
+
+    /**
      * A user has many bytes relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -44,12 +48,45 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * A user has many place relationship
+     * A user has many people relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function people()
+    {
+        return $this->hasMany('App\People');
+    }
+
+    /**
+     * A user has many places relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function places()
     {
         return $this->hasMany('App\Place');
+    }
+
+    /**
+     * A user has many images relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
+    public function lines() {
+
+        return $this->hasMany('App\Line');
+
+    }
+
+    public function follow() {
+
+        return $this->belongsToMany(self::class, 'follow',
+            'follower_id', 'followed_id')->withTimestamps();
+
     }
 }

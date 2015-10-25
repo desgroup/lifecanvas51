@@ -1,7 +1,7 @@
 <head>
     <title>@yield('title', 'Lifecanvas')</title>
 
-    <base href="http://lifecanvas">
+    <base href=" {{ App::make('url')->to('/') }}">
 
     <!-- Meta -->
     <meta charset="utf-8">

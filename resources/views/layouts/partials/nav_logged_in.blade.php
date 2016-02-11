@@ -66,7 +66,7 @@
             <!-- Events -->
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    Events
+                    Experiences
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="/places">List All</a></li>

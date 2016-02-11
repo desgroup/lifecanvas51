@@ -32,9 +32,9 @@ class FollowingController extends Controller
 
     }
 
-    public function follow()
+    public function follow($id)
     {
-        //
+        return $id;
     }
 
 

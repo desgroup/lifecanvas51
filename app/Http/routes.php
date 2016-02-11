@@ -14,6 +14,8 @@ Route::get('/test', function() {
 
 Route::get('/', ['as' => 'splash', 'uses' => 'PagesController@splash']);
 
+Route::get('/info', ['as' => 'info', 'uses' => 'PagesController@info']);
+
 
 // Authentication routes...
 Route::get('auth/login', ['as' => 'signin', 'uses' => 'Auth\AuthController@getLogin']);
@@ -32,6 +34,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 $router->group(['middleware' => 'auth'], function() {
 
     Route::get('home', ['as' => 'home', 'uses' => 'PagesController@home']);
+    Route::get('profile', ['as' => 'profile', 'uses' => 'PagesController@profile']);
+
 
     Route::resource('bytes', 'BytesController');
     Route::resource('people', 'PeopleController');

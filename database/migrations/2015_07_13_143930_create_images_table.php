@@ -18,6 +18,7 @@ class CreateImagesTable extends Migration
             $table->string('caption')->nullable();
             $table->text('notes')->nullable();
             $table->string('filename');
+            $table->string('extension')->nullable();
             $table->integer('file_type')->nullable();
             $table->integer('rights')->default('0');
             $table->integer('size_kb')->nullable();

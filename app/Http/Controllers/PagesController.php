@@ -33,6 +33,21 @@ class PagesController extends Controller {
 
     }
 
+    public function profile() {
+
+        $title = 'Profile';
+        $description = 'Lifecanvas, take a byte our of life';
+
+        return view('pages.profile', compact('title', 'description'));
+
+    }
+
+    public function info() {
+
+        return view('pages.info');
+
+    }
+
     public function fileupdate() {
 
         $images = \App\Image::all();

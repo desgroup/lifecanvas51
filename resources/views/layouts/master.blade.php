@@ -14,19 +14,7 @@
         @include('layouts.partials.header')
     @endif
 
-    @if(Auth::check())
-
-        @include('layouts.partials.breadcrumbs')
-
-    @endif
-
-    <!--=== Content Part  ===-->
-    <div class="container content">
-
-        @yield('content')
-
-    </div><!--/container-->
-    <!--=== End Content Part  ===-->
+    @yield('content')
 
 </div>
 

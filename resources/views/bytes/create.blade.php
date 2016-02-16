@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
+    <!-- Byte list -->
+    <div class="container content">
 
     @include('layouts.partials.error_list')
     {!! Form::open(['url' => 'bytes', 'files' => 'true']) !!}
@@ -134,4 +136,8 @@
     </div>
 
     {!! Form::close() !!}
+
+</div>
+<!-- End Add Form -->
+
 @stop

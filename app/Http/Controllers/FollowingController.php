@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
+use Input;
 
 class FollowingController extends Controller
 {
@@ -25,10 +27,9 @@ class FollowingController extends Controller
         $user = Auth::user();
 
         $followable = User::where('id', '<>', $user->id )->orderBy('name')->get();
-        //$followable = User::orderBy('name')->get();
         $count = $followable->count();
 
-        return view('follow.index', compact('followable','title','description','count'));
+        return view('follow.index', compact('followable','title','description','count', 'user'));
 
     }
 
@@ -55,7 +56,14 @@ class FollowingController extends Controller
      */
     public function store()
     {
-        //
+        $input = Input::get();
+        $input['userID'] = Auth::id();
+
+        $user = User::FindOrFail(Auth::id());
+
+        $user->follow()->attach($input['follow_id']);
+
+        return Redirect::back();
     }
 
     /**
@@ -99,6 +107,10 @@ class FollowingController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        Auth::user()->follow()->detach($id);
+
+        return Redirect::back();
+
     }
 }

@@ -30,7 +30,11 @@ class BytesController extends Controller {
         $bytes = \Auth::user()->bytes()->latest('byte_date')->past()->with('place', 'image')->get();
         $count = $bytes->count();
 
-        return view('bytes.index', compact('bytes','title','description','count'));
+        $lines = \Auth::user()->lines()->orderBy('name')->get();
+
+        $line_selected = "";
+
+        return view('bytes.index', compact('bytes','title','description','count','lines', 'line_selected'));
 	}
 
 	/**
@@ -110,7 +114,7 @@ class BytesController extends Controller {
 	 */
 	public function show($id)
 	{
-        $byte = Byte::with('lines', 'place', 'image')->findOrFail($id);
+        $byte = Byte::with('lines', 'place', 'image')->FindOrFail($id);
 
         $title = $byte->name;
 
@@ -120,7 +124,7 @@ class BytesController extends Controller {
 
         } else {
 
-            $image = Image::findOrFail($byte->image_id);
+            $image = Image::FindOrFail($byte->image_id);
 
         }
 

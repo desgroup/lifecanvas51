@@ -74,13 +74,17 @@ class LinesController extends Controller
     public function show($id)
     {
 
-        $line = Line::with('bytes')->findOrFail($id);
+        $line_selected = Line::with('bytes')->findOrFail($id);
 
-        $title = $line->name;
+        $title = $line_selected->name;
 
-        $bytes = $line->bytes;
+        $lines = \Auth::user()->lines()->orderBy('name')->get();
 
-        return view('lines.show', compact('title', 'line', 'bytes'));
+        $bytes = $line_selected->bytes;
+
+        $count = $bytes->count();
+
+        return view('lines.show', compact('title', 'line_selected', 'bytes', 'lines', 'count'));
 
     }
 

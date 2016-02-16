@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use App\User;
 
 class Byte extends Model {
 
@@ -96,6 +97,16 @@ class Byte extends Model {
     public function zone() {
 
         return $this->belongsTo('App\Zone');
+    }
+
+    public function getByteFeed(User $user) {
+
+        $followedUsers = $user->follow()->lists('followed_id')->all();
+
+        dd($followedUsers);
+
+        return Byte::whereIn('id', $followedUsers);
+
     }
 
 }

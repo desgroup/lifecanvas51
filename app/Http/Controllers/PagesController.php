@@ -1,9 +1,12 @@
 <?php namespace App\Http\Controllers;
 
+use App\Follow;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Lifecanvas\Utilities;
 use Auth;
+use App\User;
+use App\Byte;
 
 use Illuminate\Http\Request;
 
@@ -29,7 +32,27 @@ class PagesController extends Controller {
         $title = 'Home';
         $description = 'Lifecanvas, take a byte our of life';
 
-        return view('pages.home', compact('title', 'description'));
+        $user = User::FindOrFail(Auth::id());
+
+        $followedUsers = $user->follow()->lists('followed_id')->all();
+        $byteFeed = \App\Byte::whereIn('user_id', $followedUsers)->where('privacy', '>', '0')->latest('created_at')->get();
+
+        $myBytes = \Auth::user()->bytes()->latest('created_at')->limit(20)->get();
+
+        $month = date('Y') . '-' . date('m') . '-01 00:00:00';
+        $year = date('Y') . '-01-01 00:00:00';
+
+        $counts['byteTotal'] = number_format(Byte::where('user_id', '=', Auth::id())->count());
+        $counts['byteYear'] = number_format(Byte::where('user_id', '=', Auth::id())
+                            ->where('byte_date', '>=', $year)->count());
+        $counts['byteMonth'] = number_format(Byte::where('user_id', '=', Auth::id())
+                            ->where('byte_date', '>=', $month)->count());
+        $counts['followers'] = number_format(Follow::where('followed_id', '=', Auth::id())->count());
+        $counts['following'] = number_format(Follow::where('follower_id', '=', Auth::id())->count());
+
+        //$byteFeed = \Auth::user()->getFollowedByteFeed($user)->latest('byte_date')->past()->with('place', 'image')->get();
+
+        return view('pages.home', compact('title', 'description', 'user', 'counts', 'byteFeed', 'myBytes'));
 
     }
 

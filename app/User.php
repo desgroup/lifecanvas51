@@ -85,8 +85,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function follow() {
 
-        return $this->belongsToMany(self::class, 'follow',
+        return $this->belongsToMany(self::class, 'follows',
             'follower_id', 'followed_id')->withTimestamps();
 
     }
+
+    public function isFollowedBy(User $otherUser) {
+
+        $idsWhoOtherUserFollows = $otherUser->follow()->lists('followed_id')->all();
+
+        return in_array($this->id, $idsWhoOtherUserFollows);
+
+    }
+
+//    public function getFollowedByteFeed(User $user) {
+//
+//        $followedUsers = $user->follow()->lists('followed_id')->all();
+//
+//        dd(\App\Byte::whereIn('id', $followedUsers));
+//
+//        return \App\Byte::whereIn('id', $followedUsers);
+//
+//    }
+
 }

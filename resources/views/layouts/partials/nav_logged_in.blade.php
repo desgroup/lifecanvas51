@@ -15,18 +15,6 @@
             </li>
             <!-- End Bytes -->
 
-            <!-- Lines -->
-            <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    Lines
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/lines">List All</a></li>
-                    <li><a href="/lines/create">Add</a></li>
-                </ul>
-            </li>
-            <!-- End Lines -->
-
             <!-- People -->
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">

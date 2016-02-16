@@ -6,15 +6,18 @@
 @stop
 
 @section('content')
-    <div class="centered">
-        <h1 class="brand-font">Lifecanvas</h1>
-        <p class="subtitle">Capture your past, present and future</p>
-        <p class="main-buttons">
-            {!! link_to_route('signin', 'Sign In', null, ['class' => 'well']) !!}
-            {!! link_to_route('signup', 'Sign Up', null, ['class' => 'well']) !!}
-        </p>
-    </div> <!-- end centered -->
-
+    <!-- content -->
+    <div class="container content">
+        <div class="centered">
+            <h1 class="brand-font">Lifecanvas</h1>
+            <p class="subtitle">Capture your past, present and future</p>
+            <p class="main-buttons">
+                {!! link_to_route('signin', 'Sign In', null, ['class' => 'well']) !!}
+                {!! link_to_route('signup', 'Sign Up', null, ['class' => 'well']) !!}
+            </p>
+        </div> <!-- end centered -->
+    </div>
+    <!-- end content -->
     <style type="text/css">
 
         h1 {

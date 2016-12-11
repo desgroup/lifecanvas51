@@ -13,7 +13,7 @@
             <p class="subtitle">Capture your past, present and future</p>
             <p class="main-buttons">
                 {!! link_to_route('signin', 'Sign In', null, ['class' => 'well']) !!}
-                {!! link_to_route('signup', 'Sign Up', null, ['class' => 'well']) !!}
+                <a href="http://#" class="well">Sign Up</a>
             </p>
         </div> <!-- end centered -->
     </div>

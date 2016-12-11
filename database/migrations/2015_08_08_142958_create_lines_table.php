@@ -17,7 +17,7 @@ class CreateLinesTable extends Migration
             $table->string('name');
             $table->string('icon')->nullable();
             $table->integer('user_id');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
 
         Schema::create('byte_line', function (Blueprint $table) {
@@ -25,7 +25,8 @@ class CreateLinesTable extends Migration
             $table->foreign('byte_id')->references('id')->on('bytes')->onDelete('cascade');
             $table->integer('line_id')->unsigned()->index();
             $table->foreign('line_id')->references('id')->on('lines')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -16,7 +16,6 @@ class CountriesTableSeeder extends Seeder
 
         //insert default records
         DB::table('countries')->insert(array(
-            array('country_code' => 'AD', 'country_name' => 'Europe/Andorra'),
             array('country_code' => 'AD', 'country_name' => 'Andorra'),
             array('country_code' => 'AE', 'country_name' => 'United Arab Emirates'),
             array('country_code' => 'AF', 'country_name' => 'Afghanistan'),
@@ -68,10 +67,9 @@ class CountriesTableSeeder extends Seeder
             array('country_code' => 'CN', 'country_name' => 'China'),
             array('country_code' => 'CO', 'country_name' => 'Colombia'),
             array('country_code' => 'CR', 'country_name' => 'Costa Rica'),
-            array('country_code' => 'CS', 'country_name' => 'Serbia and Montenegro'),
             array('country_code' => 'CU', 'country_name' => 'Cuba'),
             array('country_code' => 'CV', 'country_name' => 'Cape Verde'),
-            array('country_code' => 'CW', 'country_name' => 'CuraÃ§ao'),
+            array('country_code' => 'CW', 'country_name' => 'Curaçao'),
             array('country_code' => 'CX', 'country_name' => 'Christmas Island'),
             array('country_code' => 'CY', 'country_name' => 'Cyprus'),
             array('country_code' => 'CZ', 'country_name' => 'Czech Republic'),
@@ -263,7 +261,6 @@ class CountriesTableSeeder extends Seeder
             array('country_code' => 'VU', 'country_name' => 'Vanuatu'),
             array('country_code' => 'WF', 'country_name' => 'Wallis and Futuna'),
             array('country_code' => 'WS', 'country_name' => 'Samoa'),
-            array('country_code' => 'XK', 'country_name' => 'Kosovo'),
             array('country_code' => 'YE', 'country_name' => 'Yemen'),
             array('country_code' => 'YT', 'country_name' => 'Mayotte'),
             array('country_code' => 'ZA', 'country_name' => 'South Africa'),

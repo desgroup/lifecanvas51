@@ -12,9 +12,6 @@
 
         @include('lines.partials.list_lines')
 
-        <div class="margin-bottom-30"></div>
-
-    </div><!--/container-->
     <!--=== End Found Lines ===-->
 
 @stop

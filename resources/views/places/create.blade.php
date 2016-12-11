@@ -2,6 +2,13 @@
 
 @section('content')
 
+    <div class="row">
+        <div class="col-md-12 md-margin-bottom-40">
+            <div class="headline"><h2>{{ $title }}</h2>
+            </div>
+        </div>
+    </div>
+
     @include('layouts.partials.error_list')
     {!! Form::open(['url' => 'places']) !!}
 

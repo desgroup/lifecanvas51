@@ -34,6 +34,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="/places">List All</a></li>
+                    <li><a href="/travel">Travel</a></li>
                     <li><a href="/places/create">Add</a></li>
                 </ul>
             </li>

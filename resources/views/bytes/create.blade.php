@@ -1,13 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Byte list -->
-    <div class="container content">
+    <div class="row">
+        <div class="col-md-12 md-margin-bottom-40">
+            <div class="headline"><h2>Add a Lifebyte</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Byte Form -->
 
     @include('layouts.partials.error_list')
     {!! Form::open(['url' => 'bytes', 'files' => 'true']) !!}
 
-    <!-- Name Input -->
+            <!-- Name Input -->
     <div class='form-group'>
         {!! Form::label('name', 'Name:') !!}
         {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
@@ -118,18 +124,18 @@
             {!! Form::text('second', null, ['class' => 'form-control']) !!}
         </div>
     </div>
-<div class="row form-group">
-    <div class="col-md-6">
-        {!! Form::label('lines', 'Lifelines:') !!}
-        {!! Form::select('lines[]', $lines, null, ['class' => 'form-control', 'multiple']) !!}
+    <div class="row form-group">
+        <div class="col-md-6">
+            {!! Form::label('lines', 'Lifelines:') !!}
+            {!! Form::select('lines[]', $lines, null, ['class' => 'form-control', 'multiple']) !!}
+        </div>
+        <div class="col-md-6">
+            {!! Form::label('people', 'People:') !!}
+            {!! Form::select('people[]', $people, null, ['class' => 'form-control', 'multiple']) !!}
+        </div>
     </div>
-    <div class="col-md-6">
-        {!! Form::label('people', 'People:') !!}
-        {!! Form::select('people[]', $people, null, ['class' => 'form-control', 'multiple']) !!}
-    </div>
-</div>
 
-<!-- Create Lifebyte Submit Button -->
+    <!-- Create Lifebyte Submit Button -->
     <div class='form-group'>
         {!! Form::submit('Create Lifebyte', ['class' => 'btn-u']) !!}
         {!! link_to(URL::previous(), 'Cancel', ['class' => 'btn-u btn-u-default']) !!}
@@ -137,7 +143,6 @@
 
     {!! Form::close() !!}
 
-</div>
-<!-- End Add Form -->
+    <!-- End Add Form -->
 
 @stop

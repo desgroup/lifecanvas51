@@ -1,8 +1,8 @@
 <div class="profile-event" style="overflow:auto;">
-    <div class="date-formats">
+    <a href="{!! action('BytesController@show', [$byte->id]) !!}"><div class="date-formats">
         <span>{{ $byte->byte_date->day }}</span>
         <small>{{ $byte->byte_date->month }}, {{ $byte->byte_date->year }}</small>
-    </div>
+    </div></a>
     <div class="overflow-h">
         <h3 class="heading-xs"><a href="{!! action('BytesController@show', [$byte->id]) !!}">
                 @if(strlen($byte->name) > 25)

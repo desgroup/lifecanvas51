@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call('ZonesTableSeeder');
         $this->call('CountriesTableSeeder');
+        $this->call('ContinentsTableSeeder');
+        $this->call('ContinentsCountriesTableSeeder');
 
         Model::reguard();
     }

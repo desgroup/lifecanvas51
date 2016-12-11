@@ -14,7 +14,9 @@
         @include('layouts.partials.header')
     @endif
 
-    @yield('content')
+    <div class="container content profile"><!--=== Start Content ===-->
+        @yield('content')
+    </div><!--=== End Content ===-->
 
 </div>
 

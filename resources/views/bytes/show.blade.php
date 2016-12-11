@@ -8,10 +8,13 @@
 @stop
 
 @section('content')
-<!--=== Byte Content ===-->
-<div class="container content">
 
-        <div class="headline"><h2>{{ $title }}</h2></div>
+    <div class="row">
+        <div class="col-md-12 md-margin-bottom-40">
+            <div class="headline"><h2>{{ $title }}</h2>
+            </div>
+        </div>
+    </div>
 
     <!--=== Found Byte ===-->
     <div class="row">
@@ -49,7 +52,6 @@
         </div>
     </div>
     <!--=== End Found Byte ===-->
-</div>
 @stop
 
 @if($byte->place_id)

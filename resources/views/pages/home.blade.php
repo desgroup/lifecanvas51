@@ -15,7 +15,6 @@
 
 @section('content')
 
-    <div class="container content profile"><!--=== Start Content ===-->
         <div class="row"><!-- Stats Bar -->
 
             <div class="col-md-3 md-margin-bottom-40"><!-- Profile Image -->
@@ -58,7 +57,7 @@
                     </div>
                     <!-- End Follower Stats Block -->
                     <!-- Byte Stats Block -->
-                    <div class="col-sm-6">
+                    <a href="/bytes"><div class="col-sm-6">
                         <div class="service-block-v3 service-block-blue">
                             <i class="icon-notebook"></i>
                             <span class="service-heading">Total LifeBytes</span>
@@ -88,7 +87,7 @@
                                 <small>15% higher <strong>than last month</strong></small>
                             </div>
                         </div>
-                    </div><!-- End Byte Stats Block -->
+                    </div></a><!-- End Byte Stats Block -->
                 </div><!--/end row-->
             </div><!--End Stats Boxes -->
         </div><!-- End Stats Bar -->
@@ -131,9 +130,6 @@
                         </div>
                     </div>
                     <!--End Profile Event-->
-
                 </div>
         </div>
-    </div>
-    <!--=== End Content ===-->
 @stop

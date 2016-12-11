@@ -29,7 +29,8 @@ class CreateImagesTable extends Migration
             $table->double('image_lat')->nullable();
             $table->double('image_lng')->nullable();
             $table->integer('user_id')->unsigned();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -43,9 +43,12 @@ $router->group(['middleware' => 'auth'], function() {
     Route::resource('images', 'ImagesController');
     Route::resource('lines', 'LinesController');
 
+    Route::get('travel', 'TravelController@index');
+
+    Route::get('profile/{id}', 'FollowingController@show');
+
     Route::get('follow', 'FollowingController@index');
     Route::get('follow/{id}', 'FollowingController@follow');
-    Route::get('profile/{id}', 'FollowingController@show');
     Route::post('follow', 'FollowingController@store');
     Route::delete('follow/{id}', ['as' => 'following', 'uses' => 'FollowingController@destroy']);
 

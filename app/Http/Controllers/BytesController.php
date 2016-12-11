@@ -24,7 +24,7 @@ class BytesController extends Controller {
 	public function index()
 	{
 
-        $title = 'Lifebyte List';
+        $title = 'Lifebyte List: All';
         $description = 'Lifecanvas, take a byte our of life';
 
         $bytes = \Auth::user()->bytes()->latest('byte_date')->past()->with('place', 'image')->get();

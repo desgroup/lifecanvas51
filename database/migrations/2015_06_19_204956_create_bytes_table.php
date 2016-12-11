@@ -27,7 +27,8 @@ class CreateBytesTable extends Migration
             $table->integer('image_id')->nullable()->unsigned();
             $table->integer('place_id')->nullable()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

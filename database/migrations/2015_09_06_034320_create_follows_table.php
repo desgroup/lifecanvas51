@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Follow extends Migration
+class CreateFollowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class Follow extends Migration
     public function up()
     {
 
-        Schema::create('follow', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->integer('follower_id')->unsigned()->index();
             $table->integer('followed_id')->unsigned()->index();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
     }
@@ -29,7 +30,7 @@ class Follow extends Migration
     public function down()
     {
 
-        Schema::drop('follow');
+        Schema::drop('follows');
 
     }
 }

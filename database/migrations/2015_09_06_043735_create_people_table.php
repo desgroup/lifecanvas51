@@ -18,8 +18,7 @@ class CreatePeopleTable extends Migration
             $table->integer('relationship')->nullable();;
             $table->integer('account_id')->nullable();;
             $table->integer('user_id');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->nullableTimestamps();
         });
 
         Schema::create('byte_people', function (Blueprint $table) {
@@ -27,8 +26,7 @@ class CreatePeopleTable extends Migration
             $table->foreign('byte_id')->references('id')->on('bytes')->onDelete('cascade');
             $table->integer('people_id')->unsigned()->index();
             $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->nullableTimestamps();
         });
     }
 

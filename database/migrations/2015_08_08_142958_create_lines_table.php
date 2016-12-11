@@ -25,8 +25,7 @@ class CreateLinesTable extends Migration
             $table->foreign('byte_id')->references('id')->on('bytes')->onDelete('cascade');
             $table->integer('line_id')->unsigned()->index();
             $table->foreign('line_id')->references('id')->on('lines')->onDelete('cascade');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->nullableTimestamps();
         });
     }
 

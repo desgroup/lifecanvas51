@@ -16,8 +16,7 @@ class CreateFollowsTable extends Migration
         Schema::create('follows', function (Blueprint $table) {
             $table->integer('follower_id')->unsigned()->index();
             $table->integer('followed_id')->unsigned()->index();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->nullableTimestamps();
         });
 
     }
